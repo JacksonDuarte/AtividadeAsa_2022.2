@@ -1,0 +1,28 @@
+body {
+    background-color: rgb(28, 29, 30);
+    padding: 10px;
+    border: 2px solid white;
+    margin: auto;
+    border-radius: 5px;
+    color: white;
+    max-width: 1350px;
+}
+
+#title {
+    text-align: center;
+}
+
+.text {
+    text-align: center;
+    font-family: Verdana;
+    font-size: large;
+    padding-top: 1px;
+    font-weight: 10px;
+}
+
+.images {
+    text-align: center;
+    background-color: cadetblue;
+    border: 2px white solid;
+    height: 300px;
+}

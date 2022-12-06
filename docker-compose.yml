@@ -1,0 +1,52 @@
+version: '3.9'
+services:
+    
+  web01:
+    build:
+      context: ./web01
+    image: web01
+    container_name: web01
+    restart: always
+    tty: true
+    networks:
+      - ac-network
+
+  web02:
+    build:
+      context: ./web02
+    image: web02
+    container_name: web02
+    restart: always
+    tty: true
+    networks:
+      - ac-network
+
+  web03:
+    build:
+      context: ./web03
+    image: web03
+    container_name: web03
+    restart: always
+    tty: true
+    networks:
+      - ac-network
+    
+  proxy:
+    build:
+      context: ./proxy
+    image: proxy
+    container_name: proxy
+    restart: always
+    tty: true
+    ports:
+      - "80:80"
+    depends_on:
+      - web01
+      - web02
+      - web03
+    networks:
+      - ac-network
+      
+networks:
+  ac-network:
+    driver: bridge
