@@ -9,7 +9,7 @@ services:
     restart: always
     tty: true
     networks:
-      - ac-network
+      - rn-network
 
   web02:
     build:
@@ -19,7 +19,7 @@ services:
     restart: always
     tty: true
     networks:
-      - ac-network
+      - rn-network
 
   web03:
     build:
@@ -29,7 +29,7 @@ services:
     restart: always
     tty: true
     networks:
-      - ac-network
+      - rn-network
     
   proxy:
     build:
@@ -45,8 +45,22 @@ services:
       - web02
       - web03
     networks:
-      - ac-network
+      - rn-network
+    
+  dns:
+    build: ./dns
+    image: dns
+    container_name: ns1
+    restart: always
+    tty: true
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    volumes:
+      - ./dns/primary:/etc/bind
+    networks:
+      - rn-network
       
 networks:
-  ac-network:
+  rn-network:
     driver: bridge
